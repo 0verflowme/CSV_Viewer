@@ -17,7 +17,7 @@
             </ul>
             <button class="btn btn-primary me-2 text-nowrap" type="button" class="btn btn-primary"
                 data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Add new Project
+                Display
             </button>
             <!-- <form action="/search/proj" class="d-flex" role="search">
                 <input class="form-control me-2" name="query" type="search" placeholder="Search" aria-label="Search">
@@ -33,28 +33,23 @@
     <div class="modal-dialog">
         <div class="modal-content w-100">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add a Issue</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Select you CSV file </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="/upload/csv" method="post" enctype="multipart/form-data">
                 <div class="m-3">
-                    <label for="formFile" class="form-label">Default file input example</label>
+                    <label for="formFile" class="form-label">Upload you CSV file here</label>
                     <input class="form-control" name="file" type="file">
                 </div>
+                <p class="text-center">or</p>
                 <div class="col-md m-2">
                     <div class="form-floating">
                         <select name="label" class="form-select" id="floatingSelectGrid">
-                            <option selected>Select Label:</option>
-                            <option value="bug">Bug</option>
-                            <option value="Not Implemented">Not Implemented</option>
-                            <option value="hotfix">Hotfix</option>
-                            <option value="documentation">documentation</option>
-                            <option value="more information">more information</option>
-                            <option value="tests">tests</option>
-                            <option value="replication">replication</option>
-                            <option value="Operations">Operations</option>
-                            <option value="blocked">blocked</option>
-                            <option value="Support">Support</option>
+                            <% allNames.forEach(element=> { %>
+                                <option value="<%= element.csv %> ">
+                                    <%= element.csv %>
+                                </option>
+                                <% }) %>
                         </select>
                         <label for="floatingSelectGrid">Works with selects</label>
                     </div>
@@ -83,17 +78,11 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-<script src="js/csv_to_html_table.js"></script>
+
 
 <script>
-    function format_link(link) {
-        if (link)
-            return "<a href='" + link + "' target='_blank'>" + link + "</a>";
-        else return "";
-    }
-
     CsvToHtmlTable.init({
-        csv_path: "data/Sample-Spreadsheet-10-rows.csv",
+        csv_path: "/data/" + "<%= file %>" + ".csv",
         element: "table-container",
         allow_download: true,
         csv_options: {
@@ -103,10 +92,6 @@
         datatables_options: {
             "pageLength": 30,
             dom: 'tp'
-            // "searching": false
         },
-        // custom_formatting: [
-        //     [4, format_link]
-        // ]
     });
 </script>
