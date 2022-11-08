@@ -4,7 +4,8 @@
   "description": "A simple CSV parser and viewer",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon index.js"
+    "test": "nodemon index.js",
+    "start" : "node index.js"
   },
   "author": "0verflowme",
   "license": "ISC",
@@ -14,5 +15,8 @@
     "express-ejs-layouts": "^2.5.1",
     "mongoose": "^6.7.2",
     "multer": "^1.4.5-lts.1"
+  },
+  "engines": {
+    "node": "16.18.0"
   }
 }
