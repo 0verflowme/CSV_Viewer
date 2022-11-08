@@ -2,20 +2,82 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
-<div class="container-fluid">
+<nav class="navbar navbar-expand-lg bg-light fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/"><strong>CSV Viewer</strong></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+            </ul>
+            <button class="btn btn-primary me-2 text-nowrap" type="button" class="btn btn-primary"
+                data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Add new Project
+            </button>
+            <!-- <form action="/search/proj" class="d-flex" role="search">
+                <input class="form-control me-2" name="query" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form> -->
+            <input id="search" class="form-control-sm me-2" type="text" placeholder="Search" aria-label="Search">
+        </div>
+    </div>
+</nav>
+
+<!-- modals -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content w-100">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add a Issue</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/upload/csv" method="post" enctype="multipart/form-data">
+                <div class="m-3">
+                    <label for="formFile" class="form-label">Default file input example</label>
+                    <input class="form-control" name="file" type="file">
+                </div>
+                <div class="col-md m-2">
+                    <div class="form-floating">
+                        <select name="label" class="form-select" id="floatingSelectGrid">
+                            <option selected>Select Label:</option>
+                            <option value="bug">Bug</option>
+                            <option value="Not Implemented">Not Implemented</option>
+                            <option value="hotfix">Hotfix</option>
+                            <option value="documentation">documentation</option>
+                            <option value="more information">more information</option>
+                            <option value="tests">tests</option>
+                            <option value="replication">replication</option>
+                            <option value="Operations">Operations</option>
+                            <option value="blocked">blocked</option>
+                            <option value="Support">Support</option>
+                        </select>
+                        <label for="floatingSelectGrid">Works with selects</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-5">
     <main class="row">
         <div class="col">
             <div id="table-container"></div>
         </div>
     </main>
 </div>
+
 <script src="https://code.jquery.com/jquery-3.6.1.min.js"
     integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-    crossorigin="anonymous"></script>
-<!-- <script src="js/jquery.csv.min.js"></script> -->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.21/jquery.csv.min.js"
     integrity="sha512-Y8iWYJDo6HiTo5xtml1g4QqHtl/PO1w+dmUpQfQSOTqKNsMhExfyPN2ncNAe9JuJUSKzwK/b6oaNPop4MXzkwg=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -31,7 +93,7 @@
     }
 
     CsvToHtmlTable.init({
-        csv_path: "data/temp.csv",
+        csv_path: "data/Sample-Spreadsheet-10-rows.csv",
         element: "table-container",
         allow_download: true,
         csv_options: {
@@ -39,10 +101,12 @@
             delimiter: '"'
         },
         datatables_options: {
-            paging: false
+            "pageLength": 30,
+            dom: 'tp'
+            // "searching": false
         },
-        custom_formatting: [
-            [4, format_link]
-        ]
+        // custom_formatting: [
+        //     [4, format_link]
+        // ]
     });
 </script>
