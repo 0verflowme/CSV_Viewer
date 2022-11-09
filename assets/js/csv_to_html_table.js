@@ -6,7 +6,7 @@ CsvToHtmlTable = {
 		var csv_path = options.csv_path || "";
 		var el = options.element || "table-container";
 		var csv_options = options.csv_options || {};
-		var datatables_options = options.datatables_options || {};
+		var dataTables_options = options.dataTables_options || {};
 		var custom_formatting = options.custom_formatting || [];
 		var customTemplates = {};
 		$.each(custom_formatting, function (i, v) {
@@ -52,7 +52,7 @@ CsvToHtmlTable = {
 			}
 			$table.append($tableBody);
 
-			var table = $table.DataTable(datatables_options);
+			var table = $table.DataTable(dataTables_options);
 			$("#search").on("keyup", function () {
 				table.search(this.value).draw();
 			});
