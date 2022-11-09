@@ -1,4 +1,3 @@
-console.log("hello");
 var CsvToHtmlTable = CsvToHtmlTable || {};
 
 CsvToHtmlTable = {

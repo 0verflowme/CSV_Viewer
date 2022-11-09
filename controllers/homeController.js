@@ -20,7 +20,7 @@ async function home(req, res) {
 	let allNames = await CSV.find({});
 	return res.render("home", {
 		title: "Home",
-		file: "temp",
+		file: "",
 		allNames: allNames,
 	});
 }

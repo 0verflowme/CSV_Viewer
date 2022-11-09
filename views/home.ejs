@@ -78,20 +78,20 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-
-
-<script>
-    CsvToHtmlTable.init({
-        csv_path: "/data/" + "<%= file %>" + ".csv",
-        element: "table-container",
-        allow_download: true,
-        csv_options: {
-            separator: ",",
-            delimiter: '"'
-        },
-        datatables_options: {
-            "pageLength": 30,
-            dom: 'tp'
-        },
-    });
-</script>
+<% if (file) { %>
+    <script>
+        CsvToHtmlTable.init({
+            csv_path: "/data/" + "<%= file %>" + ".csv",
+            element: "table-container",
+            allow_download: true,
+            csv_options: {
+                separator: ",",
+                delimiter: '"'
+            },
+            datatables_options: {
+                "pageLength": 30,
+                dom: 'tp'
+            },
+        });
+    </script>
+    <% } %>
