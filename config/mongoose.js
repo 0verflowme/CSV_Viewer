@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect("mongodb+srv://0verflowme:eZauRaLZMBfi8isp@cluster0.ghy5nv0.mongodb.net/?retryWrites=true&w=majority");
+mongoose.connect("mongodb://localhost/csvViewer");
 const db = mongoose.connection;
 
 db.on("err", () => { console.error.bind(console, "Connection Error") });
