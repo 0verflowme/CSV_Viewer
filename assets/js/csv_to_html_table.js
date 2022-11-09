@@ -7,7 +7,13 @@ CsvToHtmlTable = {
 		var el = options.element || "table-container";
 		var csv_options = options.csv_options || {};
 		var dataTables_options = options.dataTables_options || {};
-
+		var custom_formatting = options.custom_formatting || [];
+		var customTemplates = {};
+		$.each(custom_formatting, function (i, v) {
+			var colIdx = v[0];
+			var func = v[1];
+			customTemplates[colIdx] = func;
+		});
 
 		var $table = $(
 			"<table class='table table-success table-striped' id='" +
