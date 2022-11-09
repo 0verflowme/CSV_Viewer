@@ -33,21 +33,28 @@ async function upload(req, res) {
 			return;
 		}
 		if (req.file) {
-			let filename = req.file.originalname.split(".")[0];
-			CSV.create({
-				csv: filename,
-			})
-				.then((data) => {
-					return res.render("home", {
-						title: filename,
-						file: filename,
-						allNames: allNames,
-					});
+			if (req.file.mimetype == 'text/csv') {
+				console.log();
+				let filename = req.file.originalname.split(".")[0];
+				CSV.create({
+					csv: filename,
 				})
-				.catch((err) => {
-					console.log(err);
-					return;
+					.then((data) => {
+						return res.render("home", {
+							title: filename,
+							file: filename,
+							allNames: allNames,
+						});
+					})
+					.catch((err) => {
+						console.log(err);
+						return;
+					});
+			} else {
+				return res.status(200).json({
+					message: "Invalid file format",
 				});
+			}
 		} else {
 			return res.render("home", {
 				title: req.body.label,

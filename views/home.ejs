@@ -35,7 +35,7 @@
             <form action="/upload/csv" method="post" enctype="multipart/form-data">
                 <div class="m-3">
                     <label for="formFile" class="form-label">Upload you CSV file here</label>
-                    <input class="form-control" name="file" type="file">
+                    <input class="form-control" name="file" type="file" accept=".csv">
                 </div>
                 <p class="text-center">or</p>
                 <div class="col-md m-2">
@@ -79,7 +79,6 @@
         CsvToHtmlTable.init({
             csv_path: "/data/" + "<%= file %>" + ".csv",
             element: "table-container",
-            allow_download: true,
             csv_options: {
                 separator: ",",
                 delimiter: '"'
