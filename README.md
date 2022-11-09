@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=200px height=200px src="https://i.imgur.com/6wj0hh6.jpg" alt="Project logo"></a>
+ <img width=200px height=200px src="https://cdn.icon-icons.com/icons2/2753/PNG/512/ext_csv_filetype_icon_176252.png" alt="Project logo"></a>
 </p>
 
 <h3 align="center">CSV viewer</h3>
