@@ -50,7 +50,7 @@ async function upload(req, res) {
 						return;
 					});
 			} else {
-				return res.status(200).json({
+				return res.status(500).json({
 					message: "Invalid file format",
 				});
 			}

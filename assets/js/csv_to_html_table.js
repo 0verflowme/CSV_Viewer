@@ -53,6 +53,7 @@ CsvToHtmlTable = {
 			$table.append($tableBody);
 
 			var table = $table.DataTable(dataTables_options);
+			
 			$("#search").on("keyup", function () {
 				table.search(this.value).draw();
 			});
