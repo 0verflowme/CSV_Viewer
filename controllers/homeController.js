@@ -34,7 +34,6 @@ async function upload(req, res) {
 		}
 		if (req.file) {
 			if (req.file.mimetype == 'text/csv') {
-				console.log();
 				let filename = req.file.originalname.split(".")[0];
 				CSV.create({
 					csv: filename,
